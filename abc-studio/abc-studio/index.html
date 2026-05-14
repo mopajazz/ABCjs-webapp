@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Syncopate · ABC Jazz Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/abcjs@6.4.4/dist/abcjs-basic-min.js"></script>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo-mark">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M9 21 L13 9 L17 21 L21 9 L25 21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <div class="brand-title">SYNCOPATE</div>
+      <div class="brand-sub">jazz lab · abc notation studio</div>
+    </div>
+  </div>
+  <div class="meta">
+    <span class="led"></span>
+    <span class="meta-text">REC · 44.1kHz · take 01</span>
+  </div>
+</header>
+
+<main class="shell">
+  <!-- LEFT COLUMN: Reference -->
+  <aside class="sidebar">
+    <div class="side-head">
+      <h2>Reference</h2>
+      <input id="refSearch" type="text" placeholder="filter syntax…" />
+    </div>
+    <nav class="side-nav" id="refNav"></nav>
+    <div class="side-body" id="refBody"></div>
+    <div class="side-foot">v1.0 · ABC 2.1 · powered by abcjs</div>
+  </aside>
+
+  <!-- CENTER: Editor + Score -->
+  <section class="studio">
+    <div class="panel editor-panel">
+      <div class="panel-head">
+        <div class="panel-title"><span class="dot"></span> Editor · channel A</div>
+        <div class="panel-actions">
+          <button class="chip" data-load="basic">Basic</button>
+          <button class="chip" data-load="blues">12-bar blues</button>
+          <button class="chip" data-load="rhythm">Rhythm changes</button>
+          <button class="chip" data-load="aaba">AABA</button>
+        </div>
+      </div>
+      <textarea id="abc" spellcheck="false"></textarea>
+      <div class="warnings" id="warnings"></div>
+    </div>
+
+    <div class="panel score-panel">
+      <div class="panel-head">
+        <div class="panel-title"><span class="dot dot-on"></span> Score · live preview</div>
+        <div class="panel-actions transport">
+          <button class="chip ghost" id="btnTranspose-">−½</button>
+          <button class="chip ghost" id="btnTranspose+">+½</button>
+          <span class="divider"></span>
+          <button class="chip primary" id="btnPlay">▶ Play</button>
+        </div>
+      </div>
+      <div id="paper" class="paper"></div>
+      <div id="audio" class="audio-bar"></div>
+    </div>
+  </section>
+
+  <!-- RIGHT RAIL: Export + Share -->
+  <aside class="rail">
+    <div class="rail-card">
+      <div class="rail-title">EXPORT</div>
+      <div class="rail-actions">
+        <button class="export-btn" data-export="pdf">
+          <span class="k">PDF</span><span class="l">Portable Document</span>
+        </button>
+        <button class="export-btn" data-export="png">
+          <span class="k">PNG</span><span class="l">Raster Image · 2×</span>
+        </button>
+        <button class="export-btn" data-export="svg">
+          <span class="k">SVG</span><span class="l">Vector Score</span>
+        </button>
+        <button class="export-btn" data-export="abc">
+          <span class="k">.ABC</span><span class="l">Plain Source</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="rail-card">
+      <div class="rail-title">SHARE</div>
+      <div class="share-grid">
+        <button class="share-btn" data-share="twitter" title="X / Twitter">𝕏</button>
+        <button class="share-btn" data-share="facebook" title="Facebook">f</button>
+        <button class="share-btn" data-share="linkedin" title="LinkedIn">in</button>
+        <button class="share-btn" data-share="reddit" title="Reddit">r/</button>
+        <button class="share-btn" data-share="mail" title="Email">✉</button>
+        <button class="share-btn" data-share="copy" title="Copy link">⌘</button>
+      </div>
+      <button class="share-native" id="shareNative">⤴ Share via system…</button>
+    </div>
+
+    <div class="rail-card subtle">
+      <div class="rail-title">TIPS</div>
+      <ul class="tips">
+        <li>Click any reference snippet to insert it at the cursor.</li>
+        <li>Use <code>X:1</code> on every tune — it's the index header.</li>
+        <li><kbd>⌘/Ctrl</kbd>+<kbd>S</kbd> saves a local snapshot.</li>
+      </ul>
+    </div>
+  </aside>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="reference.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
